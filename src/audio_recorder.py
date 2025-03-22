@@ -9,7 +9,7 @@ CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
 TICKRATE = int(Prefs.get_param("tickrate"))
-BUFFER_SIZE = RATE//TICKRATE
+BUFFER_SIZE = RATE
 audio_buffer = np.zeros(BUFFER_SIZE, dtype=np.int16)
 
 def callback(in_data, frame_count, time_info, status):
@@ -35,3 +35,14 @@ stream.start_stream()
 
 def get_audio_buffer():
 	return audio_buffer
+
+def get_freq_buffer():
+	freq_spectrum = np.abs(np.fft.fft(audio_buffer))
+	freqs = np.fft.fftfreq(len(audio_buffer), d=1/RATE)
+	freq_spectrum = freq_spectrum[:len(freq_spectrum)//2]
+	freqs = freqs[:len(freqs)//2]
+	# import matplotlib.pyplot as plt
+	# print(freqs[np.argmax(freq_spectrum)])
+	# plt.plot(freqs, freq_spectrum)
+	# plt.show()
+	return freqs[np.argmax(freq_spectrum)]
