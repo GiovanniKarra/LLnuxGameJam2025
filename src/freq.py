@@ -1,7 +1,7 @@
 from time import sleep
 from random import randint
 
-from audio_recorder import get_freq_buffer
+from audio_recorder import get_input_freq
 from player import Player
 
 
@@ -26,6 +26,14 @@ class GameInstance:
 				self.new_round(i)
 			# print(f"\rTarget frequency: {self.target}Hz\tYour frequency: {freq}Hz\tCorrect timer: {self.timers[i]}s", end="")
 		return self.rounds <= 0
+
+	def reset(self, rounds=5):
+		self.freq_range = range
+		self.rounds = rounds
+		self.timers = [0.0 for _ in self.players]
+		self.scores = [0 for _ in self.players]
+		self.target = 0
+		self.max_time = 5
 
 	def new_round(self, winner=None, score=0):
 		if winner != None:

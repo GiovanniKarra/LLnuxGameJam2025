@@ -36,7 +36,7 @@ stream.start_stream()
 def get_audio_buffer():
 	return audio_buffer
 
-def get_freq_buffer():
+def get_input_freq():
 	freq_spectrum = np.abs(np.fft.fft(audio_buffer))
 	freqs = np.fft.fftfreq(len(audio_buffer), d=1/RATE)
 	freq_spectrum = freq_spectrum[:len(freq_spectrum)//2]
