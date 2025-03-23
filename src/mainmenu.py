@@ -1,13 +1,14 @@
 from ascengine.core import *
 from hostmenu import HostMenu
+from utils import AudioDisplay
 
 
 class MainMenu(GameObject):
 	def __init__(self):
 		width, height = Display.get_size()
 		title_string = "Pilou Pilou"
-		create_game_string = "Host game"
-		join_game_string = "Join game"
+		create_game_string = "Start game"
+		join_game_string = "Cursed af"
 		self.title = GameObject(x=(width//2-len(title_string)//2-1), sprite=Sprite("{BOLD;BLUE;UNDERLINE}%s"%title_string))
 		self.create_game = GameObject(x=(width//2-len(title_string)//2), y=10, sprite=Sprite("%s"%create_game_string))
 		self.join_game = GameObject(x=(width//2-len(title_string)//2), y=12, sprite=Sprite("%s"%join_game_string))
@@ -18,7 +19,10 @@ class MainMenu(GameObject):
 	
 	def update(self):
 		if Input.keypressed(Key.enter):
-			HostMenu()
+			if self.selected == 0:
+				HostMenu()
+			else:
+				AudioDisplay()
 			self.destroy()
 		self.selected += Input.keypressed(Key.down)
 		self.selected -= Input.keypressed(Key.up)

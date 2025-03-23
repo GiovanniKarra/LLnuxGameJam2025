@@ -1,0 +1,9 @@
+ascengine==0.0.3
+asyncio==3.4.3
+evdev==1.9.1
+numpy==2.2.4
+PyAudio==0.2.14
+pynput==1.8.1
+python-xlib==0.33
+six==1.17.0
+websockets==15.0.1
