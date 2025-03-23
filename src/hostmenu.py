@@ -10,7 +10,7 @@ class HostMenu(GameObject):
 		me = Player()
 		me.set_name(get_username())
 		me.set_id(1)
-		me.set_sprite(Sprite("###\n###\n###"))
+		me.set_sprite(Sprite("{RED}0>0\n(I)\n⅃ L"))
 		self.players = [me]
 		self.player_list = GameObject(sprite=Sprite("\n".join([player.name for player in self.players])))
 		super().__init__()

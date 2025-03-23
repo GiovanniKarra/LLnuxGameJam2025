@@ -41,8 +41,4 @@ def get_input_freq():
 	freqs = np.fft.fftfreq(len(audio_buffer), d=1/RATE)
 	freq_spectrum = freq_spectrum[:len(freq_spectrum)//2]
 	freqs = freqs[:len(freqs)//2]
-	# import matplotlib.pyplot as plt
-	# print(freqs[np.argmax(freq_spectrum)])
-	# plt.plot(freqs, freq_spectrum)
-	# plt.show()
 	return freqs[np.argmax(freq_spectrum)]

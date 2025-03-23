@@ -18,7 +18,7 @@ class GameInstance:
 	def update(self, delta):
 		for i, player in enumerate(self.players):
 			freq = player.freq
-			if abs(freq-self.target) < 20:
+			if abs(freq-self.target) < 10:
 				self.timers[i] += delta
 			else:
 				self.timers[i] = 0
@@ -28,11 +28,10 @@ class GameInstance:
 		return self.rounds <= 0
 
 	def reset(self, rounds=5):
-		self.freq_range = range
 		self.rounds = rounds
 		self.timers = [0.0 for _ in self.players]
 		self.scores = [0 for _ in self.players]
-		self.target = 0
+		self.target = randint(*self.freq_range)
 		self.max_time = 5
 
 	def new_round(self, winner=None, score=0):
